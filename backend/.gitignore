@@ -1,0 +1,50 @@
+# Node.js (backend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Angular (frontend)
+# Angular build output
+/dist/
+/out-tsc/
+/coverage/
+/.angular/
+
+# Angular IDE and Editor files
+.idea/
+/.vscode/
+/*.suo
+/*.ntvs*
+/*.njsproj
+/*.sln
+
+# Temporary files
+tmp/
+temp/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Others
+*.tsbuildinfo
+
+# Optional: MacOS system files
+.DS_Store
