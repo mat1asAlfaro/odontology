@@ -9,6 +9,7 @@ module.exports = async function (pool) {
       password VARCHAR(50) NOT NULL,
       role ENUM('PATIENT', 'DENTIST', 'ADMIN') NOT NULL,
       phone VARCHAR(20),
+      status BOOLEAN DEFAULT TRUE,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       INDEX idx_rol (role)
     )

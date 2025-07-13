@@ -1,5 +1,8 @@
 const pool = require("../config/db");
+const { logger, logWithFile } = require("../services/logger");
+const log = logWithFile(logger, __filename);
 const createUsersTable = require("./createUserTable");
+const createAdminTable = require("./createAdminTable");
 const createPatientTable = require("./createPatientTable");
 const createDentistTable = require("./createDentistTable");
 const createAppointmentTable = require("./createAppointmentTable");
@@ -12,6 +15,7 @@ async function seed() {
   try {
     await pool.query("SET FOREIGN_KEY_CHECKS = 0");
     await createUsersTable(pool);
+    await createAdminTable(pool);
     await createPatientTable(pool);
     await createDentistTable(pool);
     await createAppointmentTable(pool);
@@ -20,9 +24,9 @@ async function seed() {
     await createHistoryTreatmentTable(pool);
     await createAttachmentsTable(pool);
     await pool.query("SET FOREIGN_KEY_CHECKS = 1");
-    console.log("Tables created successfully.");
+    log.info("Tables created successfully.");
   } catch (error) {
-    console.error("Error creating tables: ", error);
+    log.error("Error creating tables: ", error);
   }
 }
 
