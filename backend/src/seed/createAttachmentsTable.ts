@@ -1,5 +1,8 @@
-module.exports = async function (pool) {
+import { Pool } from "mysql2/promise";
+
+export default async function createAttachmentsTable(pool: Pool): Promise<void> {
   await pool.query(`DROP TABLE IF EXISTS attachments`);
+
   await pool.query(`
     CREATE TABLE attachments (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -10,4 +13,4 @@ module.exports = async function (pool) {
       FOREIGN KEY (history_id) REFERENCES medical_history(id) ON DELETE CASCADE
     )
   `);
-};
+}

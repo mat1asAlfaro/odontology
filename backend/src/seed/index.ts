@@ -1,0 +1,9 @@
+export { default as createUsersTable } from './createUsersTable';
+export { default as createAdminsTable } from './createAdminsTable';
+export { default as createPatientsTable } from './createPatientsTable';
+export { default as createDentistsTable } from './createDentistsTable';
+export { default as createAppointmentsTable } from './createAppointmentsTable';
+export { default as createMedicalHistoryTable } from './createMedicalHistoryTable';
+export { default as createTreatmentsTable } from './createTreatmentsTable';
+export { default as createTreatmentHistoryTable } from './createTreatmentHistoryTable';
+export { default as createAttachmentsTable } from './createAttachmentsTable';

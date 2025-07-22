@@ -1,5 +1,8 @@
-module.exports = async function (pool) {
+import { Pool } from "mysql2/promise";
+
+export default async function createAppointmentsTable(pool: Pool): Promise<void> {
   await pool.query(`DROP TABLE IF EXISTS appointments`);
+
   await pool.query(`
     CREATE TABLE appointments (
       id INT AUTO_INCREMENT PRIMARY KEY,

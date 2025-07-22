@@ -1,5 +1,8 @@
-module.exports = async function (pool) {
+import { Pool } from "mysql2/promise";
+
+export default async function createAdminsTable(pool: Pool): Promise<void> {
   await pool.query(`DROP TABLE IF EXISTS admins`);
+
   await pool.query(`
     CREATE TABLE admins (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,4 +11,4 @@ module.exports = async function (pool) {
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
   `);
-};
+}
