@@ -1,0 +1,32 @@
+services:
+  mysqldb:
+    image: mysql
+    env_file: /.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_NAME
+    ports:
+      - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+  backend:
+    build: ./backend
+    env_file: /.env
+    environment:
+      - API_KEY=$API_KEY
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    ports:
+      - 3000:3000
+
+  # frontend:
+  #   build: ./frontend
+  #   container_name: odontology_frontend
+  #   ports:
+  #     - "80:80"
+  #   environment:
+  #     API_URL: http://localhost:3000
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - odontology_network
