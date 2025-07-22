@@ -4,9 +4,13 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon src/server.js",
-    "start": "cross-env NODE_ENV=production node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
+    "start": "cross-env NODE_ENV=production node src/index.ts",
+    "seed": "node seed/seed.ts",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -17,11 +21,24 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
-    "mysql2": "^3.14.2",
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/mysql": "^2.15.27",
+    "@types/node": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "cross-env": "^7.0.3",
-    "nodemon": "^3.1.10"
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "mysql2": "^3.14.2",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
