@@ -1,5 +1,5 @@
 export interface MedicalHistory {
-  id: number
+  id?: number
   patientId: number
   dentistId: number
   date: Date

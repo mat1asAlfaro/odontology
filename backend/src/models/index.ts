@@ -3,3 +3,4 @@ export * as AdminModel from './admin.model';
 export * as PatientModel from './patient.model';
 export * as DentistModel from './dentist.model';
 export * as AppointmentModel from './appointment.model';
+export * as MedicalHistoriesModel from './medical-histories.model';
