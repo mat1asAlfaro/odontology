@@ -13,12 +13,12 @@ export const getUserById = async (id: number): Promise<User[]> => {
 };
 
 export const getUserByPatientId = async (id: number): Promise<Patient[]> => {
-  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM patients WHERE ID = ?`, [id]);
+  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM patients WHERE id = ?`, [id]);
   return result as Patient[];
 };
 
 export const getUserByDentistId = async (id: number): Promise<Dentist[]> => {
-  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM dentists WHERE ID = ?`, [id]);
+  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM dentists WHERE id = ?`, [id]);
   return result as Dentist[];
 };
 

@@ -97,3 +97,17 @@ export const updateAppointmentTime = async (id: number, time: string): Promise<R
 
   return result;
 }
+
+export const getAppointmentsByPatientId = async (patientId: number): Promise<Appointment[]> => {
+  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM appointments WHERE patient_id = ?`, [
+    patientId,
+  ]);
+  return result as Appointment[];
+}
+
+export const getAppointmentsByDentistId = async (dentistId: number): Promise<Appointment[]> => {
+  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM appointments WHERE dentist_id = ?`, [
+    dentistId,
+  ]);
+  return result as Appointment[];
+}

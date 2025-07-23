@@ -4,7 +4,7 @@ const log = logWithFile(logger, __filename);
 import seed from './seed/seed';
 
 const PORT = process.env.PORT || 3000;
-const runSeed = true;
+const runSeed = false;
 
 async function startServer() {
   if (runSeed) await seed();

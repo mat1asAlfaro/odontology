@@ -39,6 +39,22 @@ export const getAppointmentById = async (req: Request, res: Response): Promise<v
 export const createAppointment = async (req: Request, res: Response): Promise<void> => {
   const { patientId, dentistId, date, time, status, comment } = req.body;
 
+  const patientIdExists = await UserModel.getUserByPatientId(patientId);
+  if (patientIdExists.length === 0) {
+    res.status(400).json({
+      message: "Non-existent patient id",
+    });
+    return;
+  }
+
+  const dentistIdExists = await UserModel.getUserByDentistId(dentistId);
+  if (dentistIdExists.length === 0) {
+    res.status(400).json({
+      message: "Non-existent dentist id",
+    });
+    return;
+  }
+
   try {
     const appointmentData: Appointment = {
       patientId,
@@ -102,7 +118,7 @@ export const updateAppointmentStatus = async (req: Request, res: Response): Prom
   const { status } = req.body;
 
   const appointmentIdExists: Appointment[] = await AppointmentModel.getAppointmentById(id);
-  if (!appointmentIdExists) {
+  if (appointmentIdExists.length === 0) {
     res.status(400).json({
       message: "Appointment not found",
     });
@@ -126,7 +142,7 @@ export const updateAppointmentDate = async (req: Request, res: Response): Promis
   const { date } = req.body;
 
   const appointmentIdExists: Appointment[] = await AppointmentModel.getAppointmentById(id);
-  if (!appointmentIdExists) {
+  if (appointmentIdExists.length === 0) {
     res.status(400).json({
       message: "Appointment not found",
     });
@@ -150,7 +166,7 @@ export const updateAppointmentTime = async (req: Request, res: Response): Promis
   const { time } = req.body;
 
   const appointmentIdExists: Appointment[] = await AppointmentModel.getAppointmentById(id);
-  if (!appointmentIdExists) {
+  if (appointmentIdExists.length === 0) {
     res.status(400).json({
       message: "Appointment not found",
     });
@@ -166,5 +182,39 @@ export const updateAppointmentTime = async (req: Request, res: Response): Promis
     res.status(500).json({
       message: "Error updating appointment time"
     });
+  }
+}
+
+export const getAppointmentsByPatientId = async (req: Request, res: Response): Promise<void> => {
+  const id = parseInt(req.params.patientId, 10);
+  try {
+    const result = await AppointmentModel.getAppointmentsByPatientId(id);
+
+    if (result.length === 0) {
+      res.status(404).json({ error: "Patient appointments not found" });
+      return;
+    }
+
+    res.json(result);
+  } catch (error) {
+    log.error("Error getting appointments by patient id: ", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export const getAppointmentsByDentistId = async (req: Request, res: Response): Promise<void> => {
+  const id = parseInt(req.params.dentistId, 10);
+  try {
+    const result = await AppointmentModel.getAppointmentsByDentistId(id);
+
+    if (result.length === 0) {
+      res.status(404).json({ error: "Dentist appointments not found" });
+      return;
+    }
+
+    res.json(result);
+  } catch (error) {
+    log.error("Error getting appointments by dentist id: ", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
