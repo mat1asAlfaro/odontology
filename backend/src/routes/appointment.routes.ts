@@ -13,4 +13,7 @@ router.patch('/status/:id', appointmentController.updateAppointmentStatus);
 router.patch('/date/:id', appointmentController.updateAppointmentDate);
 router.patch('/time/:id', appointmentController.updateAppointmentTime);
 
+router.get('/patients/:patientId', appointmentController.getAppointmentsByPatientId);
+router.get('/dentists/:dentistId', appointmentController.getAppointmentsByDentistId);
+
 export default router;

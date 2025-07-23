@@ -7,6 +7,11 @@ export const getPatientById = async (userId: number): Promise<Patient[]> => {
   return result as Patient[];
 }
 
+export const getPatientByCi = async (ci: string): Promise<Patient[]> => {
+  const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM patients WHERE ci = ?`, [ci]);
+  return result as Patient[];
+}
+
 export const createPatient = async (userId: number, data: Patient): Promise<ResultSetHeader> => {
   const { ci, birthdate, address } = data;
 

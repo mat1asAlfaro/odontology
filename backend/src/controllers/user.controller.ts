@@ -89,10 +89,19 @@ export const createUser = async (req: Request, res: Response): Promise<any> => {
   } = req.body;
 
   const userExists = await UserModel.getUserByEmail(email);
-  if (userExists.length !== 0) {
+  if (userExists) {
     return res.status(409).json({
       message: "User exists",
     });
+  }
+
+  if (userTypeData.ci && role === "patient") {
+    const patientExists = await PatientModel.getPatientByCi(userTypeData.ci);
+    if (patientExists) {
+      return res.status(409).json({
+        message: "Patient with this CI already exists",
+      });
+    }
   }
 
   try {
