@@ -22,9 +22,9 @@ export const createMedicalHistory = async (data: MedicalHistory): Promise<Result
 
     const [result] = await db.query<ResultSetHeader>(
       `
-    INSERT INTO medical_histories (patient_id, dentist_id, date, diagnostic, treatment_performed, observations) 
-    VALUES (?, ?, ?, ?, ?, ?)
-    `,
+      INSERT INTO medical_histories (patient_id, dentist_id, date, diagnostic, treatment_performed, observations) 
+      VALUES (?, ?, ?, ?, ?, ?)
+      `,
       [patientId, dentistId, date, diagnostic, treatmentPerformed, observations]
     );
 
