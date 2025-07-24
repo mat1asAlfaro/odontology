@@ -21,7 +21,8 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "zod": "^4.0.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
