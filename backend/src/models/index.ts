@@ -6,3 +6,4 @@ export * as AppointmentModel from './appointment.model';
 export * as MedicalHistoriesModel from './medical-histories.model';
 export * as TreatmentHistoriesModel from './treatment-histories.model';
 export * as TreatmentModel from './treatment.model';
+export * as AttachmentModel from './attachment.model';
