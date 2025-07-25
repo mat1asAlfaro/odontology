@@ -1,7 +1,8 @@
-export interface Attachmant {
-  id: number
+export interface Attachment {
+  id?: number
   historyId: number
-  urlFile: string
+  filePath: string
+  fileName: string
   fileType: string
   uploadDate: Date
 }

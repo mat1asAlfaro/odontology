@@ -24,9 +24,9 @@ export const createAppointment = async (data: Appointment): Promise<ResultSetHea
 
     const [result] = await db.query<ResultSetHeader>(
       `
-    INSERT INTO appointments (patient_id, dentist_id, date, time, status, comment) 
-    VALUES (?, ?, ?, ?, ?, ?)
-    `,
+      INSERT INTO appointments (patient_id, dentist_id, date, time, status, comment) 
+      VALUES (?, ?, ?, ?, ?, ?)
+      `,
       [patientId, dentistId, date, time, status, comment]
     );
 

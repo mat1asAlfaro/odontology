@@ -4,3 +4,4 @@ export { default as appointmentRoutes } from './appointments.routes';
 export { default as medicalHistoryRoutes } from './medical-histories.routes';
 export { default as treatmentHistoryRoutes } from './treatment-histories.routes';
 export { default as treatmentRoutes } from './treatments.routes';
+export { default as attachmentRoutes } from './attachments.routes';

@@ -7,7 +7,8 @@ import {
   appointmentRoutes,
   medicalHistoryRoutes,
   treatmentHistoryRoutes,
-  treatmentRoutes
+  treatmentRoutes,
+  attachmentRoutes
 } from './routes';
 
 const app: Application = express();
@@ -21,5 +22,6 @@ app.use("/api/appointments", appointmentRoutes);
 app.use("/api/medical-histories", medicalHistoryRoutes);
 app.use("/api/treatment-histories", treatmentHistoryRoutes);
 app.use("/api/treatments", treatmentRoutes);
+app.use("/api/attachments", attachmentRoutes);
 
 export default app;

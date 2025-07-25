@@ -17,10 +17,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@types/multer": "^2.0.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "multer": "^2.0.2",
     "winston": "^3.17.0",
     "zod": "^4.0.8"
   },
