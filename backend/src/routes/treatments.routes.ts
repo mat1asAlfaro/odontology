@@ -7,6 +7,7 @@ const router = Router();
 router.use(apiKeyAuth);
 router.get("/", treatmentController.getAllTreatments);
 router.get("/:id", treatmentController.getTreatmentById);
+router.get('/patients/:id/', treatmentController.getTreatmentsByPatientId);
 router.post("/", treatmentController.createTreatment);
 router.put("/:id", treatmentController.updateTreatment);
 router.delete("/:id", treatmentController.deleteTreatment);

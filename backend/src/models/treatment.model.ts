@@ -12,6 +12,26 @@ export const getTreatmentById = async (id: number): Promise<Treatment[]> => {
   return result as Treatment[];
 }
 
+export const getTreatmentsByPatientId = async (id: number): Promise<Treatment[]> => {
+  const [result] = await db.query<RowDataPacket[]>(
+    `
+    SELECT 
+      t.id,
+      t.name,
+      t.description,
+      th.quantity,
+      mh.date
+    FROM treatment_histories th 
+    JOIN treatments t ON th.treatment_id = t.id 
+    JOIN medical_histories mh ON th.history_id = mh.id
+    WHERE 
+      mh.patient_id = ?
+    `
+    , [id]
+  );
+  return result as Treatment[];
+}
+
 export const createTreatment = async (data: Treatment): Promise<ResultSetHeader> => {
   const { name, description, price, estimatedDuration } = data;
 

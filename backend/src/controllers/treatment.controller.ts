@@ -3,8 +3,8 @@ import { ResultSetHeader } from 'mysql2';
 import { logger, logWithFile } from "../services/logger";
 const log = logWithFile(logger, __filename);
 
-import { TreatmentModel } from '../models';
-//import { TreatmentHistory } from '../types';
+import { TreatmentModel, UserModel } from '../models';
+import { Treatment } from '../types';
 
 export const getAllTreatments = async (_req: Request, res: Response): Promise<void> => {
   try {
@@ -32,6 +32,29 @@ export const getTreatmentById = async (req: Request, res: Response): Promise<voi
     res.status(500).json({ error: "Internal server error" });
   }
 }
+
+export const getTreatmentsByPatientId = async (req: Request, res: Response): Promise<void> => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id)) {
+    res.status(400).json({ message: "Patient id is required" });
+    return;
+  }
+
+  const patientExists = await UserModel.getUserByPatientId(id);
+  if (patientExists.length === 0) {
+    res.status(400).json({ message: "Non-existent patient id" });
+    return;
+  }
+
+  try {
+    const treatments: Treatment[] = await TreatmentModel.getTreatmentsByPatientId(id);
+    res.json(treatments);
+  } catch (error) {
+    log.error("Error getting treatments by patient id: ", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 export const createTreatment = async (req: Request, res: Response): Promise<void> => {
   const { name, description, price, estimatedDuration } = req.body;
