@@ -140,6 +140,5 @@ El sistema prioriza la **seguridad**, la **usabilidad** y la **escalabilidad**, 
 
 ## 🗃️ Modelo de Base de Datos
 
-<img width="1498" height="998" alt="db" src="https://github.com/user-attachments/assets/792aa1c0-1216-4881-b558-5120012c080c" />
-
+<img width="1693" height="1953" alt="OdontologyDB" src="https://github.com/user-attachments/assets/32bedaaf-7822-45c8-bfc9-f964b2f29ded" />
 
